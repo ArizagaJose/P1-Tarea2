@@ -1,0 +1,10 @@
+2c2
+< Los que están en ambos son [  J  ]
+---
+> Ninguna carta están en ambos.
+7,8c7,8
+< Los que están en ambos son [ 1 E ][ 3 B ]
+< Los que están en ambos son [ 3 B ][ 1 E ]
+---
+> Los que están en ambos son [ 1 E ]
+> Los que están en ambos son [ 1 E ]
