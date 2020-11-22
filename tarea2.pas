@@ -71,40 +71,57 @@ Procedure armarTablero (mazo: TMazo; cantCols: TRangoCols; Var t : TTablero);
 //i columnas
 //j filas
 
-procedure insertarCarta(carta: TCarta, var lista: TColumna )
-
-begin
-  with lista Do
-  begin
-  tope := tope+1
-  cartas[tope] := carta
-  end;
-
-end;
-
-
-Var i, j, nCartas: Integer;
+Var i,j,k, nCartas: Integer;
 Begin
-  nCartas := 1;
+{
+m:=1;
+t.tope:=cantCols;
+mazo.tope:=N;
+for p:=1 to cantCols do
+	t.columnas[p].tope:=0;
+	while (m<=N) do
+		begin
+			if (i<= cantCols) then 
+			begin
+				t.columnas[i].tope := t.columnas[i].tope +1;
+				t.columnas[i].cartas[j]:=mazo.cartas[m];
+				i:=i+1;
+				m:=m+1;
+			end
+			else
+				begin
+					t.columnas[i].tope:=t.columnas[i].tope +1;
+					i:=1;
+					j:=j+1;
+				end;
+			end;
+		end;
+	
+
+*}
   j := 1;
-  t.columnas[j].tope := 0;
   i := 1;
 
-  While nCartas <= mazo.tope Do
+  nCartas:=1;
+  t.tope := cantCols;
+	
+  For k:=1 to N Do
   Begin
-
       For j:=1 To cantCols Do
         Begin
-          t.columnas[j].tope := t.columnas[j].tope + 1;
-          t.columnas[j].cartas[t.columnas[j].tope] := mazo.cartas[nCartas];
-          //aca van las cartas
-          nCartas := nCartas + 1;
+
+	if nCartas<= mazo.tope then
+	begin
+          t.columnas[j].cartas[i] := mazo.cartas[nCartas];
+	  t.columnas[j].tope := t.columnas[j].tope+1;
+	  nCartas := nCartas+1;
+	  //aca van las cartas
+  end;
         End;
         i := i+1;
     End;
 
-End;
-
+end;
 Procedure levantarTablero (t : TTablero; Var mazo : TMazo);
 Begin
 
@@ -117,6 +134,7 @@ End;
 
 Procedure estanEnAmbos (columna : TColumna; Var mazo : TMazo);
 Begin
+
 
 End;
 
