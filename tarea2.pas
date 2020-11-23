@@ -76,9 +76,36 @@ Begin
 End;
 
 Procedure estanEnAmbos (columna : TColumna; Var mazo : TMazo);
+
+Type 
+  aux = Record
+    tope: 0..N;
+    elems: array[1..N] Of TCarta;
+  End;
+
+Var 
+  j,i: Integer;
+  cartasNuevas: aux;
 Begin
-
-
+  cartasNuevas.tope := 0;
+  j := 1;
+  For j:=1 To mazo.tope Do
+    Begin
+      For i:=1 To columna.tope Do
+        Begin
+          If sonCartasIguales(columna.cartas[i],mazo.cartas[j]) Then
+            Begin
+              cartasNuevas.tope := cartasNuevas.tope+1;
+              cartasNuevas.elems[cartasNuevas.tope] := mazo.cartas[j];
+            End;
+        End;
+    End;
+  mazo.tope := 0;
+  For j:=1 To cartasNuevas.tope Do
+    Begin
+      mazo.tope := mazo.tope+1;
+      mazo.cartas[j] := cartasNuevas.elems[j];
+    End;
 End;
 
 Procedure convertirTablero (t : TTablero; Var tl : TTableroL);
