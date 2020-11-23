@@ -62,8 +62,17 @@ Begin
 End;
 
 Function enQueColumna (carta : TCarta; t: Ttablero): TRangoCols;
-Begin
 
+Var j,i: Integer;
+Begin
+  For j := 1 To t.tope Do
+    Begin
+      For i := 1 To t.columnas[j].tope Do
+        Begin
+          If sonCartasIguales(t.columnas[j].cartas[i],carta) Then
+            enQueColumna := j;
+        End;
+    End;
 End;
 
 Procedure estanEnAmbos (columna : TColumna; Var mazo : TMazo);
