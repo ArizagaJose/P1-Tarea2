@@ -23,6 +23,9 @@
 
 
 
+
+
+
 {const
   COLS = 2;
   FILAS = 1; 
@@ -83,7 +86,7 @@ End;
 
 Procedure armarTablero (mazo: TMazo; cantCols: TRangoCols; Var t : TTablero);
 
-Var i,j,cantFilas, nCartas: Integer;
+Var i,j,k,cantFilas, nCartas: Integer;
 Begin
   j := 1;
   i := 1;
@@ -94,7 +97,38 @@ Begin
   For j:=1 To cantcols Do
     t.columnas[j].tope := 0;
 
-  While nCartas<=mazo.tope Do
+  While nCartas <= mazo.tope Do
+    Begin
+      For j:=1 To cantcols Do
+        Begin
+          If nCartas <= mazo.tope Then
+            Begin
+              t.columnas[j].tope := t.columnas[j].tope +1;
+              t.columnas[j].cartas[t.columnas[j].tope] := mazo.cartas[nCartas];
+              nCartas := nCartas+1;
+            End;
+        End;
+      i := i+1;
+    End;
+End;
+Procedure levantarTablero (t : TTablero; Var mazo : TMazo);
+
+Var i,j,cantFilas, nCartas: Integer;
+Begin
+
+
+
+{*j := 1;
+  i := 1;
+  nCartas := 1;
+  t.tope := cantCols;
+  cantFilas := round(mazo.tope / cantCols);
+  
+
+  For j:=1 To cantcols Do
+    t.columnas[j].tope := 0;
+
+  While nCartas <= FILAS Do
     Begin
       For j:=1 To cantCols Do
         Begin
@@ -105,9 +139,8 @@ Begin
         End;
       i := i+1;
     End;
-End;
-Procedure levantarTablero (t : TTablero; Var mazo : TMazo);
-Begin
+*}
+
 
 End;
 
