@@ -9,6 +9,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {const
   COLS = 2;
   FILAS = 1; 
@@ -68,60 +82,30 @@ Begin
 End;
 
 Procedure armarTablero (mazo: TMazo; cantCols: TRangoCols; Var t : TTablero);
-//i columnas
-//j filas
 
-Var i,j,k, nCartas: Integer;
+Var i,j,cantFilas, nCartas: Integer;
 Begin
-{
-m:=1;
-t.tope:=cantCols;
-mazo.tope:=N;
-for p:=1 to cantCols do
-	t.columnas[p].tope:=0;
-	while (m<=N) do
-		begin
-			if (i<= cantCols) then 
-			begin
-				t.columnas[i].tope := t.columnas[i].tope +1;
-				t.columnas[i].cartas[j]:=mazo.cartas[m];
-				i:=i+1;
-				m:=m+1;
-			end
-			else
-				begin
-					t.columnas[i].tope:=t.columnas[i].tope +1;
-					i:=1;
-					j:=j+1;
-				end;
-			end;
-		end;
-	
-
-*}
   j := 1;
   i := 1;
-
-  nCartas:=1;
+  nCartas := 1;
   t.tope := cantCols;
-	
-  For k:=1 to N Do
-  Begin
+  cantFilas := mazo.tope Div cantCols;
+
+  For j:=1 To cantcols Do
+    t.columnas[j].tope := 0;
+
+  While nCartas<=mazo.tope Do
+    Begin
       For j:=1 To cantCols Do
         Begin
+          t.columnas[j].tope := t.columnas[j].tope +1;
+          t.columnas[j].cartas[t.columnas[j].tope] := mazo.cartas[nCartas];
+          nCartas := nCartas+1;
 
-	if nCartas<= mazo.tope then
-	begin
-          t.columnas[j].cartas[i] := mazo.cartas[nCartas];
-	  t.columnas[j].tope := t.columnas[j].tope+1;
-	  nCartas := nCartas+1;
-	  //aca van las cartas
-  end;
         End;
-        i := i+1;
+      i := i+1;
     End;
-
-end;
+End;
 Procedure levantarTablero (t : TTablero; Var mazo : TMazo);
 Begin
 
