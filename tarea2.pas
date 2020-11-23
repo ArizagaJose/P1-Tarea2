@@ -14,7 +14,7 @@ End;
 
 Procedure armarTablero (mazo: TMazo; cantCols: TRangoCols; Var t : TTablero);
 
-Var j,cantFilas, nCartas: Integer;
+Var j, nCartas: Integer;
 Begin
   // inicializacion de variables
   j := 1;
@@ -27,7 +27,7 @@ Begin
 
   While nCartas <= mazo.tope Do
     Begin
-    //se itera sobre las columnas
+      //se itera sobre las columnas
       For j:=1 To cantcols Do
         Begin
           If nCartas <= mazo.tope Then
@@ -41,9 +41,24 @@ Begin
         End;
     End;
 End;
-Procedure levantarTablero (t : TTablero; Var mazo : TMazo);
-Begin
 
+Procedure levantarTablero (t : TTablero; Var mazo : TMazo);
+
+Var j, i, nCartas: Integer;
+Begin
+  mazo.tope := 0;
+  j := 1;
+  i := 1;
+  nCartas := 1;
+  For j := 1 To t.tope Do
+    Begin
+      For i := 1 To t.columnas[j].tope Do
+        Begin
+          mazo.cartas[nCartas] := t.columnas[j].cartas[i];
+          nCartas := nCartas+1;
+          mazo.tope := mazo.tope+1;
+        End;
+    End;
 End;
 
 Function enQueColumna (carta : TCarta; t: Ttablero): TRangoCols;
