@@ -109,6 +109,36 @@ Begin
 End;
 
 Procedure convertirTablero (t : TTablero; Var tl : TTableroL);
+
+Var j, i : Integer;
+  p, aux : TColumnaL;
 Begin
 
+  tl.tope := t.tope;
+
+  For j := 1 To t.tope Do
+    Begin
+      If t.columnas[j].tope>=1 Then
+        Begin
+          new(p);
+          p^.carta := t.columnas[j].cartas[1];
+          P^.sig := Nil;
+          aux := p;
+          i := 2;
+
+          While i <= t.columnas[j].tope Do
+            Begin
+
+              If i <= t.columnas[j].tope Then
+                Begin
+                  new(aux^.sig);
+                  aux := aux^.sig;
+                  aux^.carta := t.columnas[j].cartas[i];
+                End;
+              i := i+1;
+            End;
+          aux^.sig := Nil;
+          tl.columnas[j] := p;
+        End;
+    End;
 End;
